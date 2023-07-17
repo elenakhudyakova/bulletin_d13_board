@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load i18n cache %}
+
+{% block head_title %}
+{% trans 'Bulletin Board' %}
+{% endblock %}
+
+{% block title %}
+{% trans 'Bulletin Board' %}
+{% endblock %}
+
+
+{% block content %}
+{% cache 300 content LANGUAGE_CODE %}
+<div class="row">
+  {% for category in categories.values %}
+  <div class="col-xl-6 col-md-6">
+    <div class="card mb-4">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="true" href="#">{{ category.name }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'board_ad_list' category_pk=category.pk %}">{% trans 'Watch all' %}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          {% for ad in category.get_random_ads %}
+          <div class="col-xl-4 col-md-6">
+            <div class="card bg-light mb-4">
+              <div class="card-body">
+                <h3 class="card-text">{{ ad.title }}</h3>
+                {{ ad.created_at }} {% if ad.created_at != ad.updated_at %} {{ ad.updated_at }} {% endif %}
+              </div>
+              <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-black stretched-link" href="{{ ad.get_absolute_url }}">{% trans 'Read' %}</a>
+                <div class="small">&blacktriangleright;</div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endcache %}
+{% endblock %}

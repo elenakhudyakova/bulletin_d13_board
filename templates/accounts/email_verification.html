@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+{% if reques.user.emailverificationcode.check_time %}
+
+{% else %}
+<div>
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>{{ code_incorrect }}</p>
+    <input type="submit" value="{% trans 'Verify email' %}" class="btn btn-primary">
+  </form>
+</div>
+<div>
+  <form action="{% url 'accounts_send_email_verification_code' %}" method="post" class="mt-5">
+    {% csrf_token %}
+    <input type="submit" value="{% trans 'Send email verification code' %}" class="btn btn-primary">
+  </form>
+</div>
+{% endif %}
+{% endblock %}

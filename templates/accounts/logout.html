@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block head_title %}
+{{ title }}
+{% endblock %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<p><a href="{% url 'accounts_login' %}">{% translate 'Log In' %}</a></p>
+<p><a href="{% url 'accounts_register' %}">{% translate 'Register' %}</a></p>
+{% endblock %}

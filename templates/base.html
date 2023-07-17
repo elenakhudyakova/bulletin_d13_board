@@ -1,0 +1,158 @@
+{% load static %}
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>{% block head_title %}{% endblock %}</title>
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+</head>
+<body class="sb-nav-fixed">
+
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+  <!-- Navbar Brand-->
+  <a class="navbar-brand ps-3" href="{% url 'board_index' %}">{% trans 'Bulletin Board' %}</a>
+  <!-- Sidebar Toggle-->
+  <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+    &Cconint;
+  </button>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <li><form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <input type="hidden" name="language" value="en-us">
+        <input type="submit" value="EN" class="btn btn-link btn-sm nav-link{% if LANGUAGE_CODE == 'en-us' %} active{% endif %}">
+      </form></li>
+      <li><form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <input type="hidden" name="language" value="ru">
+        <input type="submit" value="RU" class="btn btn-link btn-sm nav-link{% if LANGUAGE_CODE == 'ru' %} active{% endif %}">
+      </form></li>
+    </ul>
+  </div>
+  <ul class="navbar-nav ms-auto me-3 me-lg-4">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+         aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        {% if request.user.is_authenticated %}
+        {% if not request.user.email_verified %}
+        <li><a class="dropdown-item" href="{% url 'accounts_email_verification' %}">{% trans 'Verify email' %}</a></li>
+        <li>
+          <hr class="dropdown-divider"/>
+        </li>
+        {% endif %}
+        <li><a class="dropdown-item" href="{% url 'accounts_password_change' %}">{% trans 'Change password' %}</a></li>
+        <li><a class="dropdown-item" href="{% url 'accounts_logout' %}">{% trans 'Logout' %}</a></li>
+        {% else %}
+        <li><a class="dropdown-item" href="{% url 'accounts_login' %}">{% trans 'Login' %}</a></li>
+        <li><a class="dropdown-item" href="{% url 'accounts_register' %}">{% trans 'Register' %}</a></li>
+        {% endif %}
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<div id="layoutSidenav">
+  <div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+      <div class="sb-sidenav-menu">
+        <div class="nav">
+
+          <div class="sb-sidenav-menu-heading">{% trans 'Bulletin Board' %}</div>
+
+          <a class="nav-link" href="{% url 'board_index' %}">
+            {% trans 'Bulletin Board' %}
+          </a>
+
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAllAds"
+             aria-expanded="false" aria-controls="collapseLayouts">
+            {% trans 'All ads' %}
+            <div class="sb-sidenav-collapse-arrow">&blacktriangledown;</div>
+          </a>
+          <div class="collapse" id="collapseAllAds" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+            <nav class="sb-sidenav-menu-nested nav">
+              {% for category in categories.values %}
+              <a class="nav-link" href="{% url 'board_ad_list' category_pk=category.pk %}">{{ category.name }}</a>
+              {% endfor %}
+            </nav>
+          </div>
+
+          {% if request.user.is_authenticated %}
+          <div class="sb-sidenav-menu-heading">{% trans 'Account' %}</div>
+
+          {% if request.user.email_verified %}
+          <a class="nav-link" href="{% url 'board_sent_replies' %}">
+            {% trans 'Sent replies' %}
+          </a>
+
+          <a class="nav-link" href="{% url 'board_user_ads' %}">
+            {% trans 'Your ads' %}
+          </a>
+
+          <a class="nav-link" href="{% url 'board_ad_create' %}">
+            {% trans 'Add ad' %}
+          </a>
+
+          <a class="nav-link" href="{% url 'board_received_replies' %}">
+            {% trans 'Received replies' %}
+          </a>
+          {% else %}
+          <a class="nav-link" href="{% url 'accounts_email_verification' %}">
+            {% trans 'Verify email' %}
+          </a>
+          {% endif %}
+          {% endif %}
+        </div>
+      </div>
+      {% if request.user.is_authenticated %}
+      <div class="sb-sidenav-footer">
+        <div class="small">Logged in as:</div>
+        {{ request.user.username }}
+      </div>
+      {% endif %}
+    </nav>
+  </div>
+
+  <div id="layoutSidenav_content">
+
+    <main>
+      <div class="container-fluid px-4">
+        <h1 class="mt-4">{% block title %}{% endblock %}</h1>
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item active">{% block undertitle %}{% endblock %}</li>
+        </ol>
+        {% block content %}
+        {% endblock %}
+      </div>
+    </main>
+
+
+<!--    <footer class="py-4 bg-light mt-auto">-->
+<!--      <div class="container-fluid px-4">-->
+<!--        <div class="d-flex align-items-center justify-content-between small">-->
+<!--          <div class="text-muted">Copyright &copy; Your Website 2022</div>-->
+<!--          <div>-->
+<!--            <a href="#">Privacy Policy</a>-->
+<!--            &middot;-->
+<!--            <a href="#">Terms &amp; Conditions</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </footer>-->
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>
+

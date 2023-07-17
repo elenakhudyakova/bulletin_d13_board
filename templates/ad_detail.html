@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+{{ ad.title }}
+{% endblock%}
+
+{% block undertitle %}
+{% trans 'Created at' %} {{ ad.created_at }}
+{% if ad.created_at != ad.updated_at %} ({% trans 'Edited at' %} {{ ad.updated_at }}) {% endif %}
+{% endblock %}
+
+{% block content %}
+<div>{{ ad.content|safe }}</div>
+{% if ad.author == request.user %}
+<p class="mt-5"><a href="{% url 'board_ad_update' ad.pk %}">{% trans 'Edit' %}</a></p>
+<form action="{% url 'board_ad_deactivate' ad.pk %}" method="post" class="mt-5">
+  {% csrf_token %}
+  <input type="submit" value="{% trans 'Deactivate' %}" class="btn btn-primary">
+</form>
+<form action="{% url 'board_received_replies' %}" method="get" class="mt-5">
+  <input type="hidden" name="ad" value="{{ ad.pk }}">
+  <input type="submit" value="{% trans 'Watch replies' %}" class="btn btn-primary">
+</form>
+{% else %}
+<form action="" method="post" class="mt-5">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="{% trans 'Send reply' %}" class="btn btn-primary">
+</form>
+{% endif %}
+{% endblock %}

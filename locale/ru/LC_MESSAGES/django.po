@@ -1,0 +1,218 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-01 13:06+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
+"100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\accounts\models.py:16
+msgid "email address"
+msgstr "почтовый адрес"
+
+#: .\board\models.py:17
+msgid "active"
+msgstr "активно"
+
+#: .\board\models.py:26
+msgid "ad"
+msgstr "объявление"
+
+#: .\board\models.py:27
+msgid "ads"
+msgstr "объявления"
+
+#: .\board\models.py:45
+msgid "category"
+msgstr "категория"
+
+#: .\board\models.py:46
+msgid "categories"
+msgstr "категории"
+
+#: .\board\models.py:51 .\board\models.py:61
+msgid "replies"
+msgstr "отклики"
+
+#: .\board\models.py:60
+msgid "reply"
+msgstr "отклик"
+
+#: .\board\views.py:104 .\templates\base.html:99
+msgid "Your ads"
+msgstr "Ваши объявления"
+
+#: .\board\views.py:123 .\templates\base.html:95
+msgid "Sent replies"
+msgstr "Отправленные отклики"
+
+#: .\board\views.py:130 .\templates\base.html:107
+msgid "Received replies"
+msgstr "Полученные отклики"
+
+#: .\templates\accounts\email_verification.html:14 .\templates\base.html:49
+#: .\templates\base.html:111
+msgid "Verify email"
+msgstr "Подтвердить почтовый адрес"
+
+#: .\templates\accounts\email_verification.html:20
+msgid "Send email verification code"
+msgstr "Отправить код подтверждения email"
+
+#: .\templates\accounts\login.html:6 .\templates\accounts\login.html:10
+#: .\templates\accounts\login.html:17 .\templates\accounts\logout.html:12
+msgid "Log In"
+msgstr "Вход"
+
+#: .\templates\accounts\logout.html:13 .\templates\accounts\register.html:6
+#: .\templates\accounts\register.html:10 .\templates\accounts\register.html:17
+#: .\templates\base.html:58
+msgid "Register"
+msgstr "Регистрация"
+
+#: .\templates\accounts\password_change_done.html:5
+#: .\templates\accounts\password_change_done.html:9
+msgid "Your password was changed."
+msgstr "Ваш пароль изменён."
+
+#: .\templates\accounts\password_change_form.html:5
+#: .\templates\accounts\password_change_form.html:9 .\templates\base.html:54
+msgid "Change password"
+msgstr "Изменить пароль"
+
+#: .\templates\accounts\password_change_form.html:17
+msgid "Please correct the error below."
+msgstr "Пожалуйста, исправьте ошибку ниже."
+
+#: .\templates\accounts\password_change_form.html:17
+msgid "Please correct the errors below."
+msgstr "Пожалуйста, исправьте ошибки ниже."
+
+#: .\templates\accounts\password_change_form.html:22
+msgid ""
+"Please enter your old password, for security’s sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+"В целях безопасности введите свой старый пароль, а затем дважды введите "
+"новый пароль, чтобы мы могли убедиться, что вы ввели его правильно."
+
+#: .\templates\accounts\password_change_form.html:45
+msgid "Change my password"
+msgstr "Изменить мой пароль"
+
+#: .\templates\ad_detail.html:9 .\templates\ad_list.html:34
+msgid "Created at"
+msgstr "Создано"
+
+#: .\templates\ad_detail.html:10 .\templates\ad_list.html:35
+msgid "Edited at"
+msgstr "Редактировано"
+
+#: .\templates\ad_detail.html:16
+#, fuzzy
+#| msgid "Edited at"
+msgid "Edit"
+msgstr "Редактировано"
+
+#: .\templates\ad_detail.html:19
+#, fuzzy
+#| msgid "active"
+msgid "Deactivate"
+msgstr "активно"
+
+#: .\templates\ad_detail.html:23
+#, fuzzy
+#| msgid "Sent replies"
+msgid "Watch replies"
+msgstr "Отправленные отклики"
+
+#: .\templates\ad_detail.html:29
+msgid "Send reply"
+msgstr "Отправить отклик"
+
+#: .\templates\ad_list.html:7 .\templates\base.html:21
+#: .\templates\base.html:71 .\templates\base.html:74 .\templates\index.html:6
+#: .\templates\index.html:10 .\templates\replies_list.html:6
+msgid "Bulletin Board"
+msgstr "Доска Объявлений"
+
+#: .\templates\ad_list.html:20 .\templates\replies_list.html:14
+msgid "Page"
+msgstr "Страница"
+
+#: .\templates\ad_list.html:20 .\templates\replies_list.html:14
+msgid "of"
+msgstr "из"
+
+#: .\templates\ad_list.html:32
+msgid "Author"
+msgstr "Автор"
+
+#: .\templates\ad_list.html:39 .\templates\index.html:40
+msgid "Read"
+msgstr "Читать"
+
+#: .\templates\ad_list.html:69
+msgid "There is no ads right now"
+msgstr "На данный момент здесь нету объявлений"
+
+#: .\templates\base.html:55
+msgid "Logout"
+msgstr "Выйти"
+
+#: .\templates\base.html:57
+msgid "Login"
+msgstr "Войти"
+
+#: .\templates\base.html:79
+msgid "All ads"
+msgstr "Все объявления"
+
+#: .\templates\base.html:91
+msgid "Account"
+msgstr "Аккаунт"
+
+#: .\templates\base.html:103
+msgid "Add ad"
+msgstr "Добавить объявление"
+
+#: .\templates\index.html:26
+msgid "Watch all"
+msgstr "Смотреть все"
+
+#: .\templates\replies_list.html:21
+msgid "User"
+msgstr "Пользователь"
+
+#: .\templates\replies_list.html:22
+msgid "Ad"
+msgstr "Объявление"
+
+#: .\templates\replies_list.html:23
+msgid "Content"
+msgstr "Содержание"
+
+#: .\templates\replies_list.html:24
+msgid "Time"
+msgstr "Время"
+
+#: .\templates\replies_list.html:50
+msgid "Accept reply"
+msgstr "Принять отклик"
+
+#: .\templates\replies_list.html:56
+msgid "Delete reply"
+msgstr "Удалить отклик"
