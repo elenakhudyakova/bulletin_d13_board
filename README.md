@@ -1,5 +1,4 @@
-# bulletin_d13_board
-
+# BulletinBoard
 Проектное задание **Доска Объявлений** платформы SkillFactory.
 
 Текст задания:
