@@ -1,0 +1,55 @@
+{% extends 'default.html' %}
+{% load custom_filters %}
+{% load custom_tags %}
+
+{% block title %}
+Посты
+{% endblock title %}
+
+{% block content %}
+    <h3>Сегодня: {% current_time '%d %b %Y' %} </h3>
+    <h2> Пост {{ one_post.title|censor }} от : {{ one_post.creation|date:'d.m.Y' }} </h2>
+       <table>
+           <thead>
+            <tr>
+              <th scope="col">Категория</th>
+                <th scope="col">Название</th>
+                <th scope="col">Текст</th>
+            </tr>
+          </thead>
+        <tbody>
+           <tr>
+               <td>{{ one_post.category}}</td>
+               <td>{{ one_post.title}}</td>
+               <td>{{ one_post.content|safe }}</td>
+           </tr>
+    </tbody>
+       </table>
+
+        {% if comments %}
+    <div class="container">
+        <table class="table table-hover">
+         <thead>
+         <h3>Комментарии к посту</h3>
+            <tr>
+              <th scope="col">Автор</th>
+              <th scope="col">Создано</th>
+                <th scope="col">Текст</th>
+                <th scope="col">Согласован</th>
+            </tr>
+          </thead>
+           {% for one in comments %}
+            <tr class="light">
+                <td>{{ one.user }}</td>
+               <td>{{ one.creation }}</td>
+                <td>{{ one.text }}</td>
+                <td>{{ one.approved }}</td>
+                <br>
+           </tr>
+           {% endfor %}
+        </table>
+   {% else %}
+       <h2>Комментариев пока нет.</h2>
+   {% endif %}
+    </div>
+{% endblock content %}
